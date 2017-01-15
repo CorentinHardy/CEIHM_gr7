@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="blou.affichagecentral">
+
+    <uses-permission android:name="android.permission.INTERNET"/>/home/blou/Bureau/Ideogrammes/danger.png
+    /home/blou/Bureau/Ideogrammes/distsecu(temp_).gif
+    /home/blou/Bureau/Ideogrammes/merci.png
+    /home/blou/Bureau/Ideogrammes/pieton.jpg
+    /home/blou/Bureau/Ideogrammes/rabattre(temp_).jpg
+    /home/blou/Bureau/Ideogrammes/ralentissez.png
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ParamActivity" />
+        <activity android:name=".SupprimActivity" />
+        <activity android:name=".HelpActivity"></activity>
+    </application>
+
+</manifest>
