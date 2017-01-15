@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, OnDestroy} from "@angular/core";
 import {MessagesService} from "../messages/messages.service";
 /**
  * Created by Corentin on 10/01/17.
@@ -16,7 +16,7 @@ import {MessagesService} from "../messages/messages.service";
   styleUrls: [ './hud1.component.scss', '../huds.scss' ],
   templateUrl: './hud1.component.html'
 })
-export class Hud1Component implements OnInit {
+export class Hud1Component implements OnDestroy {
   currentlySend:boolean = false;
   selection:{main:number, top:number, bottom:number} = {
     main: 0,
@@ -26,7 +26,10 @@ export class Hud1Component implements OnInit {
 
   constructor(public _messageService: MessagesService){
     this.resetSelection();
-    this.test();
+    // this.test();
+
+    console.log("register to MessageService");
+    this._messageService.addHud1(this);
   }
 
   test(){
@@ -60,17 +63,20 @@ export class Hud1Component implements OnInit {
   send(){
     this.currentlySend = true;
     setTimeout(() => {
+      this.resetSelection();
       this.currentlySend = false;
-    }, 1000)
+    }, 700);
   }
 
   topSelection(){
+    console.log("go top");
     this.selection.bottom = this.iterateToTop(this.selection.bottom);
     this.selection.main = this.iterateToTop(this.selection.main);
     this.selection.top = this.iterateToTop(this.selection.top);
   }
 
   bottomSelection(){
+    console.log("go bottom");
     this.selection.bottom = this.iterateToBottom(this.selection.bottom);
     this.selection.main = this.iterateToBottom(this.selection.main);
     this.selection.top = this.iterateToBottom(this.selection.top);
@@ -88,7 +94,7 @@ export class Hud1Component implements OnInit {
     return n - 1;
   }
 
-  public ngOnInit() {
-
+  public ngOnDestroy() {
+    this._messageService.removeHud1(this);
   }
 }

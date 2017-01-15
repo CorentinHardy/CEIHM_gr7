@@ -1,0 +1,37 @@
+<div>
+  <li><a routerLinkActive="active" [routerLink]="['/']"> home</a></li>
+
+  <div class="command">
+    <h2>internal command</h2>
+    <button id="i_top" (click)="push(-3)">top</button>
+    <button id="i_bottom" (click)="push(-2)">bottom</button>
+    <button id="i_cancel" (click)="push(-1)">cancel</button>
+    <br/>
+    <br/>
+    <button id="i_0" (click)="push(0)">0</button>
+    <button id="i_1" (click)="push(1)">1</button>
+    <button id="i_2" (click)="push(2)">2</button>
+    <button id="i_3" (click)="push(3)">3</button>
+    <button id="i_4" (click)="push(4)">4</button>
+    <button id="i_5" (click)="push(5)">5</button>
+    <button id="i_6" (click)="push(6)">6</button>
+
+    <br/>
+    <br/>
+  </div>
+
+  <div class="others">
+    <h2>send extern message</h2>
+
+    <button id="e_0" (click)="send(0)">0</button>
+    <button id="e_1" (click)="send(1)">1</button>
+    <button id="e_2" (click)="send(2)">2</button>
+    <button id="e_3" (click)="send(3)">3</button>
+    <button id="e_4" (click)="send(4)">4</button>
+    <button id="e_5" (click)="send(5)">5</button>
+    <button id="e_6" (click)="send(6)">6</button>
+
+    <br/>
+    <br/>
+  </div>
+</div>

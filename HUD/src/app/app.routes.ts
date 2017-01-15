@@ -4,11 +4,13 @@ import { NoContentComponent } from './no-content';
 
 import {Hud1Component} from "./hud1/hud1.component";
 import {Hud2Component} from "./hud2/hud2.component";
+import {InterfaceAdmin} from "./interface/interface.component";
 
 export const ROUTES: Routes = [
   { path: '',      component: HomeComponent },
   { path: 'hud1',  component: Hud1Component },
   { path: 'hud2',  component: Hud2Component },
+  { path: 'interface',  component: InterfaceAdmin },
   { path: 'home',  component: HomeComponent },
   { path: '**',    component: NoContentComponent },
 ];

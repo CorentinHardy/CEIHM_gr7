@@ -18,7 +18,7 @@ export class PropagateMessage {
   @Input("accept") accept:string;
   @Input("decline") decline:string;*/
 
-  constructor(_messageService : MessagesService) {
+  constructor(public _messageService : MessagesService) {
 
   }
 }

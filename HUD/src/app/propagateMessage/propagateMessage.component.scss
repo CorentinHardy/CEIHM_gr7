@@ -1,14 +1,18 @@
 .propagateHUD {
+  position: absolute;
   width : 100%;
   height : 100%;
   background-color: white;
 }
 
-.message {
+message {
   position: absolute;
-  width: 100%;
+  top: 25%;
+  left: 25%;
+  width: 50%;
   height: 50%;
 }
+
 .accept, .decline {
   position: absolute;
   top: 50%;

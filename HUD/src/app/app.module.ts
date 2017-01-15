@@ -36,6 +36,8 @@ import {Hud1Component} from "./hud1/hud1.component";
 import {ReceiveComponent} from "./receive/receive.component";
 import {Hud2Component} from "./hud2/hud2.component";
 import {PropagateMessage} from "./propagateMessage/propagateMessage.component";
+import {InterfaceAdmin} from "./interface/interface.component";
+import {MessageComponent} from "./messages/message.component";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -61,6 +63,8 @@ type StoreType = {
     HomeComponent,
     Hud1Component,
     Hud2Component,
+    InterfaceAdmin,
+    MessageComponent,
     ReceiveComponent,
     PropagateMessage,
     NoContentComponent,

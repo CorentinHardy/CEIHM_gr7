@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, OnDestroy} from "@angular/core";
 import {MessagesService} from "../messages/messages.service";
 /**
  * Created by Corentin on 10/01/17.
@@ -16,12 +16,17 @@ import {MessagesService} from "../messages/messages.service";
   styleUrls: [ './hud2.component.scss', '../huds.scss' ],
   templateUrl: './hud2.component.html'
 })
-export class Hud2Component {
+export class Hud2Component implements OnDestroy{
   currentlySend:boolean = false;
   selection:number = 0;
 
+  // we are in a simplest case of prog conc, so simplest solution
+  private eventNumber:number = 0;
+
   constructor(public _messageService: MessagesService){
-    this.test();
+    console.log("register to MessageService");
+    this._messageService.addHud2(this);
+    // this.test();
   }
 
   test(){
@@ -39,10 +44,18 @@ export class Hud2Component {
   }
 
   send(n:number){
+    this.eventNumber++;
+    let action:number = this.eventNumber;
     this.selection = n;
     this.currentlySend = true;
     setTimeout(() => {
-      this.currentlySend = false;
-    }, 1000)
+      // we want to desactivate this if we have receive another message
+      if (action == this.eventNumber)
+        this.currentlySend = false;
+    }, 2000)
+  }
+
+  public ngOnDestroy() {
+    this._messageService.removeHud2(this);
   }
 }

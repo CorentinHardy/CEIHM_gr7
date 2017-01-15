@@ -1,10 +1,6 @@
 <h2>received messages</h2>
 
 <div *ngFor="let m of _messageService.received; let i = index">
-  <div class="message" *ngIf="i < printNumber">
-    <h3 class="messageTitle">{{m.message}}</h3>
-    <img class="messageImg" [src]="m.imgUrl"/>
-    <p>{{m.by}} {{m.description}}</p>
-  </div>
+  <message [message]="m" *ngIf="i < printNumber"></message>
 </div>
 

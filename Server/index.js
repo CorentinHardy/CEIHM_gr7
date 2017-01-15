@@ -13,9 +13,7 @@ var app = express()
 
 
 var port = 8082;
-var response;
 var id;
-var messages = [];
 
 var hudsSocketIds = [];
 
@@ -28,10 +26,7 @@ app.use(express.static(__dirname + '/'));
 
 ///////////////
 // http part //
-
-// new message
-app.get('/push/:id', function (request, res) {
-  id = request.params.id;
+var receiveMessageNumber = function(id){
   console.log("receive push ", id);
   // messages.push(id);
 
@@ -41,31 +36,48 @@ app.get('/push/:id', function (request, res) {
   var data = {"message": id};
   hudsSocketIds.forEach(function(sId) {
     if (io.sockets.connected[sId] != null)
-      io.sockets.connected[sId].emit("message", data);
-    });
-});
+      io.sockets.connected[sId].emit("command", data);
+  });
+};
 
-// app.get('/pop', function (request, res) {
-//   if(messages.length > 0){
-//     console.log("pop empty");
-//     res.send({"response":-10});
-//   }else {
-//     response = messages.pop()
-//     console.log("pop response ", response, " on ", messages);
-//     res.send({"response":response});
-//   }
-// });
+// new message
+app.get('/push/:id', function (request, res) {
+  id = request.params.id;
+  receiveMessageNumber(id);
+});
 
 /**
  * messages server:
  * [0-6]
  * -2 on desccend (bottom)
  * -3 on monte (up)
+ * -1 cancel
  */
 
 
 io.sockets.on('connection', function (socket) {
   console.log("Connection [" + socket.id + "]");
+
+  socket.on('sendMessage', function(data){
+    /*TODO message content:
+      message:string;
+      imgUrl:string;
+      by:Kind;
+      description:string;
+      isPropagated:boolean;
+
+      // but for monday 16, we are happy with
+      message: number
+      */
+    hudsSocketIds.forEach(function(sId) {
+      if (io.sockets.connected[sId] != null)
+        io.sockets.connected[sId].emit("externMessage", data);
+    });
+  });
+
+  socket.on('push', function(data) {
+    receiveMessageNumber(data.message);
+  });
 
   /* REGISTER */
   socket.on('register', function (data) {
@@ -90,3 +102,10 @@ io.sockets.on('connection', function (socket) {
   });
 
 });
+
+
+// manage error
+app.get('*', function(req, res){
+  console.log("receive unknown path: " + req.url);
+});
+
