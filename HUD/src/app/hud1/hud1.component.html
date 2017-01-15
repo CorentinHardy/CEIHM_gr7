@@ -1,0 +1,24 @@
+
+<div class="hud">
+  <!-- TODO il faut faire un component ici, commun 2 huds pour les message boule de neige -->
+  <propagate-message ></propagate-message>
+  <!--[message]="_messageService.propagateMessage.length > 0 ? _messageService.propagateMessage[0] : null"-->
+  <div class="messagetoSend">
+    <div class="messageTop">
+      <h3 class="messageTitle">{{_messageService.messages[selection.top].message}}</h3>
+      <img class="messageImg" [src]="_messageService.messages[selection.top].imgUrl"/>
+    </div>
+    <div class="messageMain" [class.send]="currentlySend">
+      <h3 class="messageTitle">{{_messageService.messages[selection.main].message}}</h3>
+      <img class="messageImg" [src]="_messageService.messages[selection.main].imgUrl"/>
+    </div>
+    <div class="messageBottom">
+      <h3 class="messageTitle">{{_messageService.messages[selection.bottom].message}}</h3>
+      <img class="messageImg"  [src]="_messageService.messages[selection.bottom].imgUrl"/>
+    </div>
+  </div>
+
+  <receive class="messageReceive"></receive>
+</div>
+
+

@@ -1,0 +1,17 @@
+
+<div class="hud">
+  <div class="messagetoSend" *ngIf="currentlySend">
+    <div *ngFor="let m of _messageService.messages; let i = index">
+      <div *ngIf="i == selection">
+        <h3 class="messageTitle">{{m.message}}</h3>
+        <img class="messageImg" [src]="m.imgUrl"/>
+      </div>
+    </div>
+  </div>
+
+  <propagate-message ></propagate-message>
+  <!--[message]="_messageService.propagateMessage.length > 0 ? _messageService.propagateMessage[0] : null"-->
+  <receive class="messageReceive"></receive>
+</div>
+
+

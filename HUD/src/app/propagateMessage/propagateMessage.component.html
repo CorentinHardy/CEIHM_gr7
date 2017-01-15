@@ -1,0 +1,9 @@
+<div class="propagateHUD" *ngIf="_messageService.propagateMessage.length > 0">
+  <div class="message">
+    <h3 class="messageTitle">{{_messageService.propagateMessage[0].message}}</h3>
+    <img class="messageImg" [src]="_messageService.propagateMessage[0].imgUrl"/>
+    <p>{{_messageService.propagateMessage[0].by}} {{_messageService.propagateMessage[0].description}}</p>
+  </div>
+<!--  <div class="accept">accept <span>with buttons {{accept}}</span></div>
+  <div class="decline">decline <span>with buttons {{decline}}</span></div>-->
+</div>
