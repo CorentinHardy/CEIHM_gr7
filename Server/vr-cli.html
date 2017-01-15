@@ -1,0 +1,112 @@
+<body>
+<div id="title"></div>
+<input type="text" id="x" placeHolder="x"/>
+<input type="text" id="y" placeHolder="y"/>
+<input type="text" id="z" placeHolder="z"/>
+<button id="buttonP">Send New Position</button>
+<button id="buttonForward">Move Forward</button>
+<button id="buttonLeft">Move Left</button>
+<button id="buttonRight">Move Right</button>
+<button id="buttonBackward">Move Backward</button>
+<button id="buttonUp">Move Up</button>
+<button id="buttonDown">Move Down</button>
+<div id="history"></div>
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+	var position = {};
+	var x = 0.0;
+	var y = 0.0;
+	var z = 0.0;
+	
+  var socket = io.connect();
+
+  var addMsg = function (msg) {
+    document.getElementById("history").innerHTML += "<p>" + msg + "</p>";
+  };
+  
+  var send = function () {
+	position = {};
+    position.action = "UPDATE";
+
+	position.x = x.toString();
+    position.y = y.toString();
+    position.z = z.toString();
+
+    socket.emit('position', position);
+    addMsg("Position sent");
+  }
+
+  var sendPosition = function(){    
+    x = parseFloat(document.getElementById("x").value);
+    document.getElementById("x").innerHTML = "";
+    
+    y = parseFloat(document.getElementById("y").value);
+    document.getElementById("y").innerHTML = "";
+    
+    z = parseFloat(document.getElementById("z").value);
+    document.getElementById("z").innerHTML = "";
+    
+    send();
+  };
+  document.getElementById("buttonP").onclick = sendPosition;
+
+
+	var moveForward = function() {
+		z += 1;
+		send();
+	}
+	document.getElementById("buttonForward").onclick = moveForward;
+
+	var moveBackward = function() {
+		z -= 1;
+		send();
+	}
+	document.getElementById("buttonBackward").onclick = moveBackward;
+
+	var moveLeft = function() {
+		x -= 1;
+		send();
+	}
+	document.getElementById("buttonLeft").onclick = moveLeft;
+	
+	var moveRight = function() {
+		x += 1;
+		send();
+	}
+	document.getElementById("buttonRight").onclick = moveRight;
+
+	var moveUp = function() {
+		y += 1;
+		send();
+	}
+	document.getElementById("buttonUp").onclick = moveUp;
+	
+	var moveDown = function() {
+		y -= 1;
+		send();
+	}
+	document.getElementById("buttonDown").onclick = moveDown;
+
+
+
+  socket.on('connect', function(){
+    addMsg("Connected to the server");
+
+    socket.emit('register', {type : "vr"});
+    addMsg("Registering as a vr");
+
+    document.getElementById("title").innerHTML = "<h4> VR " + socket.id + "</h4>";
+  });
+
+  socket.on('object', function(data){
+    addMsg("Received new object: " + JSON.stringify(data));
+  });
+
+  socket.on('map', function(data){
+    addMsg("Received new map: " + JSON.stringify(data));
+  });
+
+</script>
