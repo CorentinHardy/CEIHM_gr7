@@ -25,7 +25,7 @@ export class MessagesService {
   // connection with server
   private socket;
   private port:number = 8082;
-  private url:string = "192.168.1.22";
+  private url:string = "localhost"; // "172.20.10.4"
   public request: string = "http://" + this.url + ":" + this.port;
 
   constructor() {
@@ -34,8 +34,16 @@ export class MessagesService {
 
     let ms = [
       {
-        message: "danger !",
+        message: "danger",
         imgUrl: "assets/img/danger.png"
+      },
+      {
+        message: "rabattez-vous",
+        imgUrl: "assets/img/rabattre.jpg"
+      },
+      {
+        message: "attention pieton",
+        imgUrl: "assets/img/pieton.jpg"
       },
       {
         message: "merci",
@@ -46,20 +54,12 @@ export class MessagesService {
         imgUrl: "assets/img/distsecu.gif"
       },
       {
-        message: "attention pieton",
-        imgUrl: "assets/img/pieton.jpg"
-      },
-      {
-        message: "rabattez-vous",
-        imgUrl: "assets/img/rabattre.jpg"
-      },
-      {
-        message: "danger",
-        imgUrl: "assets/img/danger.png"
-      },
-      {
         message: "ralentissez !",
         imgUrl: "assets/img/ralentissez.png"
+      },
+      {
+        message: "Alerte",
+        imgUrl: "assets/img/carreRouge.png"
       }
     ];
 
@@ -67,7 +67,7 @@ export class MessagesService {
       this.messages.push(new Message(m.message, m.imgUrl));
     }
 
-    this.messages[6].isPropagated = true;
+    this.messages[5].isPropagated = true;
 
     this.max = this.messages.length - 1;
 
@@ -90,6 +90,7 @@ export class MessagesService {
 
       // message's reception
       this.socket.on('command', (data) => {
+        console.log("=> received raw Command ", data);
         this.manageCommandReceive(data.message);
       });
 
@@ -119,10 +120,10 @@ export class MessagesService {
    * return true if it is a response, false if it is another things
    */
   propagatedMessageResponse() {
-    if(this.propagateMessage.length == 0)
+    if(this.propagateMessage.length < 0)
       return false;
     // TODO transmission du message here ? en tout cas message de validation
-    this.propagateMessage.splice(0);
+    // this.propagateMessage.splice(0);
     return true;
   }
 
@@ -170,12 +171,12 @@ export class MessagesService {
     }
     // else he do a command
     switch(n){
-      case -3:
+      case -2:
         console.log("command top receive");
         for(let hud of this.hud1s)
           hud.topSelection();
         break;
-      case -2:
+      case -3:
         console.log("command bottom receive");
         for(let hud of this.hud1s)
           hud.bottomSelection();

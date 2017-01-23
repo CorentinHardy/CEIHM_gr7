@@ -6,7 +6,7 @@
     </div>
   </div>
 
-  <propagate-message ></propagate-message>
+  <propagate-message *ngIf="_messageService.propagateMessage[0] != null"></propagate-message>
   <!--[message]="_messageService.propagateMessage.length > 0 ? _messageService.propagateMessage[0] : null"-->
   <receive class="messageReceive"></receive>
 </div>

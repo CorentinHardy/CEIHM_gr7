@@ -13,9 +13,10 @@ export class MessageComponent{
   @Input("message") m:Message;
   @Input("type") type:boolean;
 
-  constructor(){
-
+  constructor() {
+    if(! this.type || this.type === undefined)
+      this.type = false;
   }
 
-  
+
 }

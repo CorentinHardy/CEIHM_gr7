@@ -1,12 +1,11 @@
 
 <div class="hud">
-  <!-- TODO il faut faire un component ici, commun 2 huds pour les message boule de neige -->
-  <propagate-message ></propagate-message>
+  <propagate-message *ngIf="_messageService.propagateMessage[0] != null"></propagate-message>
   <!--[message]="_messageService.propagateMessage.length > 0 ? _messageService.propagateMessage[0] : null"-->
   <div class="messagetoSend">
     <message [message]="_messageService.messages[selection.top]"
              class="messageTop"></message>
-    <message [message]="_messageService.messages[selection.main]"
+    <message [type]="true" [message]="_messageService.messages[selection.main]"
              class="messageMain" [class.send]="currentlySend"></message>
     <message [message]="_messageService.messages[selection.bottom]"
              class="messageBottom"></message>

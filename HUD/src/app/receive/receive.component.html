@@ -1,4 +1,4 @@
-<h2>received messages</h2>
+<h2><a routerLinkActive="active" [routerLink]="['/home']">received messages</a></h2>
 
 <div *ngFor="let m of _messageService.received; let i = index">
   <message [message]="m" *ngIf="i < printNumber"></message>

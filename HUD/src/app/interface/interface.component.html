@@ -3,18 +3,22 @@
 
   <div class="command">
     <h2>internal command</h2>
-    <button id="i_top" (click)="push(-3)">top</button>
-    <button id="i_bottom" (click)="push(-2)">bottom</button>
+    <button id="i_top" (click)="push(-2)">top</button>
+    <button id="i_bottom" (click)="push(-3)">bottom</button>
     <button id="i_cancel" (click)="push(-1)">cancel</button>
     <br/>
     <br/>
-    <button id="i_0" (click)="push(0)">0</button>
-    <button id="i_1" (click)="push(1)">1</button>
-    <button id="i_2" (click)="push(2)">2</button>
-    <button id="i_3" (click)="push(3)">3</button>
-    <button id="i_4" (click)="push(4)">4</button>
-    <button id="i_5" (click)="push(5)">5</button>
-    <button id="i_6" (click)="push(6)">6</button>
+    <div *ngFor="let m of _messageService.messages">
+
+    </div>
+    <button id="i_0" (click)="push(0)">0 zone danger</button>
+    <button id="i_1" (click)="push(1)">1 se rabattre</button>
+    <button id="i_2" (click)="push(2)">2 pieton</button>
+    <button id="i_3" (click)="push(3)">3 merci</button>
+    <br/>
+    <button id="i_4" (click)="push(4)">4 distance de securite</button>
+    <button id="i_5" (click)="push(5)">5 embouteillage</button>
+    <button id="i_6" (click)="push(6)">6 alerte</button>
 
     <br/>
     <br/>

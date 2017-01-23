@@ -27,7 +27,7 @@ app.use(express.static(__dirname + '/'));
 ///////////////
 // http part //
 var receiveMessageNumber = function(id){
-  console.log("receive push ", id);
+  console.log("receive push ", id, " send to ", hudsSocketIds.length, " huds");
   // messages.push(id);
 
   // setTimeout(function() {
@@ -35,14 +35,16 @@ var receiveMessageNumber = function(id){
   // }, 0);
   var data = {"message": id};
   hudsSocketIds.forEach(function(sId) {
-    if (io.sockets.connected[sId] != null)
+    if (io.sockets.connected[sId] != null) {
+      console.log("    send to ", sId);
       io.sockets.connected[sId].emit("command", data);
+    }
   });
 };
 
 // new message
 app.get('/push/:id', function (request, res) {
-  id = request.params.id;
+  id = parseInt(request.params.id);
   receiveMessageNumber(id);
 });
 
