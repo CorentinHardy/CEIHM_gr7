@@ -10,3 +10,23 @@ button {
 .others{
   background-color: rgba(186, 54, 51, 0.45);
 }
+
+.boutons-hud1, .boutons-hud2 {
+  width: 50%;
+  border: dashed 1px black;
+}
+
+.type1 {
+  margin-top: 1em;
+  max-width: 250px;
+}
+.type2 {
+  width: 9em;
+  position: absolute;
+  top: 4em;
+  right: 0;
+  #t_6 {
+    width: 8em;
+    margin: 4px;
+  }
+}

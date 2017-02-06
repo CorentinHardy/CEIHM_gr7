@@ -3,22 +3,35 @@
 
   <div class="command">
     <h2>internal command</h2>
-    <button id="i_top" (click)="push(-2)">top</button>
-    <button id="i_bottom" (click)="push(-3)">bottom</button>
-    <button id="i_cancel" (click)="push(-1)">cancel</button>
-    <br/>
-    <br/>
-    <div *ngFor="let m of _messageService.messages">
-
+    <div class="boutons-hud1">
+      <button id="i_top" (click)="push(-2)">top</button>
+      <button id="i_bottom" (click)="push(-3)">bottom</button>
+      <button id="i_cancel" (click)="push(-1)">cancel</button>
     </div>
-    <button id="i_0" (click)="push(0)">0 zone danger</button>
-    <button id="i_1" (click)="push(1)">1 se rabattre</button>
-    <button id="i_2" (click)="push(2)">2 pieton</button>
-    <button id="i_3" (click)="push(3)">3 merci</button>
-    <br/>
-    <button id="i_4" (click)="push(4)">4 distance de securite</button>
-    <button id="i_5" (click)="push(5)">5 embouteillage</button>
-    <button id="i_6" (click)="push(6)">6 alerte</button>
+    <div class="boutons-hud2 type1">
+      <button id="i_0" (click)="push(0)">0 zone danger</button>
+      <button id="i_3" (click)="push(3)">3 merci</button>
+      <button id="i_1" (click)="push(1)">1 se rabattre</button>
+      <button id="i_4" (click)="push(4)">4 distance de securite</button>
+      <button id="i_2" (click)="push(2)">2 pieton</button>
+      <button id="i_5" (click)="push(5)">5 embouteillage</button>
+      <button id="i_6" (click)="push(6)">6 alerte</button>
+    </div>
+    <div class="boutons-hud2 type2">
+      <table>
+        <tr>
+          <td><button id="t_0" (click)="push(0)">0 </button></td>
+          <td><button id="t_3" (click)="push(3)">3 </button></td>
+        </tr><tr>
+          <td><button id="t_1" (click)="push(1)">1 </button></td>
+          <td><button id="t_4" (click)="push(4)">4 </button></td>
+        </tr><tr>
+          <td><button id="t_2" (click)="push(2)">2 </button></td>
+          <td><button id="t_5" (click)="push(5)">5 </button></td>
+        </tr>
+      </table>
+      <button id="t_6" (click)="push(6)">6 alerte</button>
+    </div>
 
     <br/>
     <br/>

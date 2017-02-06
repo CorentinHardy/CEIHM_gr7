@@ -25,7 +25,7 @@ export class MessagesService {
   // connection with server
   private socket;
   private port:number = 8082;
-  private url:string = "localhost"; // "172.20.10.4"
+  private url:string = "192.168.43.32"; // "172.20.10.4"
   public request: string = "http://" + this.url + ":" + this.port;
 
   constructor() {
@@ -51,7 +51,7 @@ export class MessagesService {
       },
       {
         message: "distance de sécurité",
-        imgUrl: "assets/img/distsecu.gif"
+        imgUrl: "assets/img/distsecu.png"
       },
       {
         message: "ralentissez !",
